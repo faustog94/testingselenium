@@ -5,10 +5,11 @@ import org.openqa.selenium.By;
 
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
-
+import org.openqa.selenium.*;
 /**
  * 
  */
+
 
 /**
  * @author Fausto
@@ -19,14 +20,16 @@ public class test {
 	@Test
 	public void testu() {
 		FirefoxDriver driver = new FirefoxDriver();
+		
 		String baseUrl = new String("http://newtours.demoaut.com");
 		driver.get(baseUrl + "/mercurywelcome.php");
 		driver.findElement(By.name("userName")).clear();
 		driver.findElement(By.name("userName")).sendKeys("pedro21");
 		driver.findElement(By.name("password")).clear();
 		driver.findElement(By.name("password")).sendKeys("pedro");
-		//assertEquals("SIGN-OFF", driver.findElement(By.partialLinkText("SIGN-OFF")).getText());
 		driver.findElement(By.name("login")).click();
+		assertEquals("SIGN-OFF", driver.findElement(By.partialLinkText("SIGN-OFF")).getText());
+		// assertTrue(isElementPresent(By.linkText("SIGN-OFF")));
 		new Select(driver.findElement(By.name("fromPort"))).selectByVisibleText("London");
 		new Select(driver.findElement(By.name("toPort"))).selectByVisibleText("Paris");
 		new Select(driver.findElement(By.name("toDay"))).selectByVisibleText("31");
@@ -45,8 +48,13 @@ public class test {
 		new Select(driver.findElement(By.name("cc_exp_dt_yr"))).selectByVisibleText("2010");
 		driver.findElement(By.name("buyFlights")).click();
 		driver.findElement(By.xpath("//td[3]/a/img")).click();
+		driver.findElement(By.linkText("SIGN-OFF")).click();
+
 
 		
 	}
 
+	
+
 }
+
